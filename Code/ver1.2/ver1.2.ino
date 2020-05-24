@@ -11,8 +11,11 @@ SoftwareSerial keyChanel(3, 2); // RX, TX // Key from NXP
 String cmd;
 char key;
 int mode = 1;
+int nSetup = 1;
 bool isStart = false;
 bool isSetup = false;
+bool isMode = false;
+
 
 void setup() {
   Speaker.begin(9600);
@@ -26,35 +29,65 @@ void setup() {
   }
   myDFPlayer.volume(30);  //Set volume value. From 0 to 30
   playAudio(1);
+  //myDFPlayer.playFolder(15,1);
 }
 
 void loop() {
   if (keyChanel.available()) {
     //Serial.write(mySerial.read());
     key = keyChanel.read();
-    Serial.println(key);
+    Serial.print(key);
+    Serial.println("-mode: " + String(mode) + "-isStart " + String(isStart) + "-isSetup " + String(isSetup)
+                 + "-Setup: " + String(nSetup));
   }
-  if(key == '9' && isStart == false)
+  if (key == '9' && isStart == false && isMode == false) // setup
   {
     isSetup = true;
-    
+    switch (nSetup) {
+      case 1:
+        playAudio(8);
+        break;
+      case 2:
+        playAudio(9);
+        break;
+      case 3:
+        playAudio(10);
+        break;
+      case 4:
+        myDFPlayer.pause();
+        nSetup = 0;
+        isSetup = false;
+        break;
+      default:
+        break;
+    }
+    nSetup++;
+    key = 0;
   }
-  else if (key == '7' && isStart == false) {
+  else if (key == '7' && isStart == false) { // start
     playAudio(7);
     isStart = true;
     mode = 1 ; // reset mode
     key = 0;// resset key after process
+    nSetup = 1; // reset nSetup
+    isSetup = false;
+    isMode = false;
   }
   else if (key == '8' )
   {
-    if(isStart == true){
+    myDFPlayer.pause();
+    if (isStart == true) {  // stop
       playAudio(2);
     }
     isStart = false;
     mode = 1 ; // reset mode
     key = 0;// resset key after process
+    nSetup = 1; // reset nSetup
+    isSetup = false;
+    isMode = false;
   }
-  else if (key == '6' && isStart == false) {
+  else if (key == '6' && isStart == false && isSetup == false) {
+    isMode = true;
     switch (mode) {
       case 1:
         playAudio(3);
@@ -84,6 +117,7 @@ void loop() {
 }
 
 void playAudio(int index) {
+  Serial.println("Play: " + String(index));
   myDFPlayer.pause();
   delay(500);
   myDFPlayer.play(index);

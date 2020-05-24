@@ -25,6 +25,9 @@ Sãn sàng chạy nhé.
 Cài đặt thời gian chạy, Nhấn cộng để tăng nhấn trừ để giảm thời gian chạy. Đơn vị là phút. Nhấn setup lần nữa để chuyển sang cài đặt quãng đường chạy.
 Nhấn start để bắt đầu chạy với các thông số mà bạn đã cài đặt. Nhấn Stop để quay trở lại.
 ------> 8
-Cài đặt độ dài quãng đường chạy. Nhấn cộng để tăng, nhấn trừ để giam quãng đường chạy, đơn vị là trăm mét. Nhấn setup lần nữa để chuyển sang cài đặt lượng năng lượng tiêu thụ.
-Nhấn start để bắt đầu chạy với các thông số mà bạn đã cài đặt. Nhấn Stop hoặc setup lần nữa để quay trở lại.
+Cài đặt độ dài quãng đường chạy. Nhấn cộng để tăng, nhấn trừ để giảm quãng đường chạy, đơn vị là trăm mét. Nhấn setup lần nữa để chuyển sang cài đặt lượng năng lượng tiêu thụ.
+Nhấn start để bắt đầu chạy với các thông số mà bạn đã cài đặt. Nhấn Stop để quay trở lại.
 ------> 9
+Cài đặt lượng năng lương tiêu thụ. Nhấn cộng để tăng, nhấn trừ để giam lượng năng lượng tiêu thụ. Đơn vị là kalo.
+Nhấn start để bắt đầu chạy với các thông số mà bạn đã cài đặt. Nhấn Stop hoặc setup lần nữa để quay trở lại.
+------> 10
