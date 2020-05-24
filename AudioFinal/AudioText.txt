@@ -1,0 +1,30 @@
+6: la mode
+7: Start
+8: Stop
+9: Setup
+
+Chào mừng bạn đến với máy chạy Sport One.
+Bấm start để chạy với tốc độ mặc định.
+Bấm Stop để dừng lại, hoặc quay trở lại cài đặt ban đầu.
+Bấm Mode để lựa chọn chế độ thích hợp. 
+Bấm setup để cài đặt thêm các thông số khác như tốc độ chạy, thời gian, quãng đường, lượng calo tiêu thụ.
+-------> 1
+Chúc mừng bạn đã hoàn thành bài chạy. Cảm ơn bạn đã sử dụng tôi. Hẹn bạn vào buổi tập tiếp theo nhé
+-------> 2
+
+Mode 1:  tốc độ chạy thấp nhất, bấm Start để bắt đầu chạy. Nhấn mode để chuyển sang chế độ khác. Nhấn stop để dừng lại.
+------> 3
+Mode 2: Bấm Start để bắt đầu chạy, bấm mode để tiếp tục chuyển sang chế độ khác.
+------> 4
+Mode 12:  Tốc độ cao nhất, bấm start để bắt đầu chạy. Chú ý giữ an toàn. Nhấn Stop hoặc mode 2 lần để quay lại mức ban đầu.
+------> 5
+Mode 12 là chế độ chạy với tốc độ cao nhất không thể chạy nhanh hơn được nữa. Mời bạn nhấn mode hoặc stop để quay về trạng thái ban đầu.
+------> 6
+Sãn sàng chạy nhé.
+------> 7
+Cài đặt thời gian chạy, Nhấn cộng để tăng nhấn trừ để giảm thời gian chạy. Đơn vị là phút. Nhấn setup lần nữa để chuyển sang cài đặt quãng đường chạy.
+Nhấn start để bắt đầu chạy với các thông số mà bạn đã cài đặt. Nhấn Stop để quay trở lại.
+------> 8
+Cài đặt độ dài quãng đường chạy. Nhấn cộng để tăng, nhấn trừ để giam quãng đường chạy, đơn vị là trăm mét. Nhấn setup lần nữa để chuyển sang cài đặt lượng năng lượng tiêu thụ.
+Nhấn start để bắt đầu chạy với các thông số mà bạn đã cài đặt. Nhấn Stop hoặc setup lần nữa để quay trở lại.
+------> 9
