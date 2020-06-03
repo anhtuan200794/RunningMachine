@@ -1,0 +1,24 @@
+--cpu Cortex-M3
+"mp3ver4\startup_stm32f103xb.o"
+"mp3ver4\main.o"
+"mp3ver4\stm32f1xx_it.o"
+"mp3ver4\stm32f1xx_hal_msp.o"
+"mp3ver4\stm32f1xx_hal_gpio_ex.o"
+"mp3ver4\stm32f1xx_hal_tim.o"
+"mp3ver4\stm32f1xx_hal_tim_ex.o"
+"mp3ver4\stm32f1xx_hal_uart.o"
+"mp3ver4\stm32f1xx_hal.o"
+"mp3ver4\stm32f1xx_hal_rcc.o"
+"mp3ver4\stm32f1xx_hal_rcc_ex.o"
+"mp3ver4\stm32f1xx_hal_gpio.o"
+"mp3ver4\stm32f1xx_hal_dma.o"
+"mp3ver4\stm32f1xx_hal_cortex.o"
+"mp3ver4\stm32f1xx_hal_pwr.o"
+"mp3ver4\stm32f1xx_hal_flash.o"
+"mp3ver4\stm32f1xx_hal_flash_ex.o"
+"mp3ver4\stm32f1xx_hal_exti.o"
+"mp3ver4\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "MP3ver4\MP3ver4.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "MP3ver4.map" -o MP3ver4\MP3ver4.axf

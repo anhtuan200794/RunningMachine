@@ -27,7 +27,7 @@ void setup() {
   if (!myDFPlayer.begin(Speaker)) {  //Use softwareSerial to communicate with mp3.
     Serial.println(F("Speaker not good !"));
   }
-  myDFPlayer.volume(30);  //Set volume value. From 0 to 30
+  myDFPlayer.volume(25);  //Set volume value. From 0 to 30
   playAudio(1);
   //myDFPlayer.playFolder(15,1);
 }
