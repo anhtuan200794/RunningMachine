@@ -113,35 +113,39 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 	MP3_reset();
-	HAL_Delay(1000);
+	HAL_Delay(2000);
 	MP3_setVol(30);
-	HAL_Delay(100);
+	HAL_Delay(200);
 	MP3_play(1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-	HAL_UART_Transmit(&huart3,(uint8_t *)str,8,150);
+	//HAL_UART_Transmit(&huart3,(uint8_t *)str,8,150);
   while (1)
   {
     /* USER CODE END WHILE */
 				input = GPIOA->IDR;
         /* Check Key input from the first pin */
-        if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0))))
+		if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :4
         {
-          key = 'a';
-          HAL_Delay(150);
+          //key = 'a';
+					if(isStart)
+						MP3_play(14);
+          HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_0))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_0)))) // Key B incl: 4
         {
-          key = 'b';
-          HAL_Delay(150);
+          if(isStart)
+						MP3_play(13);
+          HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_0))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_0)))) // Key C incl: 12
         {
-          key = 'c';
-          HAL_Delay(150);
+          if(isStart)
+						MP3_play(12);
+          HAL_Delay(200);
         }
         /*  Check Key input from the second pin */
         else if(!(input & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1))))
@@ -150,25 +154,96 @@ int main(void)
           HAL_Delay(150);
         }
         
-        else if(!(input & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1))))//          key = '6';
         {
-          key = '6';
-          HAL_Delay(150);
+//          key = '6';
+//          HAL_Delay(150);
+					if (isStart == false && isSetup == false) 
+						{
+						isMode = true;
+						switch (mode) {
+							case 1:
+								MP3_play(3);
+								break;
+							case 2:
+								MP3_play(4);
+								break;
+							case 12:
+								MP3_play(5);
+								break;
+							case 13:
+								MP3_play(6);
+								break;
+							case 14:
+								mode = 0; // mode will be set to 1 in the end of switch
+								break;
+							default:
+								break;
+						}
+						mode++;
+						key = 0;// resset key after process
+					}
+					HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key = '7';
         {
-          key = '7';
-          HAL_Delay(150);
+//          key = '7';
+//          HAL_Delay(150);
+					if (isStart == false) 
+					{ // start
+						MP3_play(7);
+						isStart = true;
+						mode = 1 ; // reset mode
+						key = 0;// resset key after process
+						nSetup = 1; // reset nSetup
+						isSetup = false;
+						isMode = false;
+					}
+					HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1)))) //key = '8';
         {
-          key = '8';
-          HAL_Delay(150);
+//          
+//          HAL_Delay(150);
+					MP3_stop();
+					if (isStart == true) {  // stop
+						MP3_play(2);
+					}
+					isStart = false;
+					mode = 1 ; // reset mode
+					key = 0;// resset key after process
+					nSetup = 1; // reset nSetup
+					isSetup = false;
+					isMode = false;
+					HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1))))
-        {
-          key = '9';
-          HAL_Delay(150);
+        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key 9
+        { 
+						if (isStart == false && isMode == false) // setup
+						{
+              isSetup = true;
+              switch (nSetup) {
+                case 1:
+                  MP3_play(8);
+                  break;
+                case 2:
+                  MP3_play(9);
+                  break;
+                case 3:
+                  MP3_play(10);
+                  break;
+                case 4:
+                  MP3_stop();
+                  nSetup = 0;
+                  isSetup = false;
+                  break;
+                default:
+                  break;
+              }
+              nSetup++;
+              key = 0;
+            }
+          HAL_Delay(200);
         }
         /*  Check Key input from the third pin */
         else if(!(input & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_2))))
@@ -199,28 +274,31 @@ int main(void)
         }
         
         /* Check Key input from the fourt pin */
-        else if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_3))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_3)))) // Key D speed 3
         {
-          key = 'd';
-          HAL_Delay(150);
+           if(isStart)
+						MP3_play(11);
+          HAL_Delay(200);
         }
-				else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_3))))
+				else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_3)))) // Key D speed 6
         {
-          key = 'e';
-          HAL_Delay(150);
+           if(isStart)
+						MP3_play(16);
+          HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_3))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_3)))) // Key D speed 9
         {
-          key = 'f';
-          HAL_Delay(150);
+           if(isStart)
+						MP3_play(15);
+          HAL_Delay(200);
         }
 				
     /* USER CODE BEGIN 3 */
-		if(key != 'k'){
-			HAL_UART_Transmit(&huart3,(uint8_t *)&key,1,432);
-			//playVoice(key);
-			key = 'k';
-		}
+//		if(key != 'k'){
+//			//HAL_UART_Transmit(&huart3,(uint8_t *)&key,1,432);
+//			playVoice(key);
+//			key = 'k';
+//		}
   }
   /* USER CODE END 3 */
 }
@@ -319,79 +397,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void playVoice(char key)
-{
-	if (key == '9' && isStart == false && isMode == false) // setup
-  {
-    isSetup = true;
-    switch (nSetup) {
-      case 1:
-        MP3_play(8);
-        break;
-      case 2:
-        MP3_play(9);
-        break;
-      case 3:
-        MP3_play(10);
-        break;
-      case 4:
-        MP3_stop();
-        nSetup = 0;
-        isSetup = false;
-        break;
-      default:
-        break;
-    }
-    nSetup++;
-    key = 0;
-  }
-  else if (key == '7' && isStart == false) { // start
-    MP3_play(7);
-    isStart = true;
-    mode = 1 ; // reset mode
-    key = 0;// resset key after process
-    nSetup = 1; // reset nSetup
-    isSetup = false;
-    isMode = false;
-  }
-  else if (key == '8' )
-  {
-    MP3_stop();
-    if (isStart == true) {  // stop
-      MP3_play(2);
-    }
-    isStart = false;
-    mode = 1 ; // reset mode
-    key = 0;// resset key after process
-    nSetup = 1; // reset nSetup
-    isSetup = false;
-    isMode = false;
-  }
-  else if (key == '6' && isStart == false && isSetup == false) {
-    isMode = true;
-    switch (mode) {
-      case 1:
-        MP3_play(3);
-        break;
-      case 2:
-        MP3_play(4);
-        break;
-      case 12:
-        MP3_play(5);
-        break;
-      case 13:
-        MP3_play(6);
-        break;
-      case 14:
-        mode = 0; // mode will be set to 1 in the end of switch
-        break;
-      default:
-        break;
-    }
-    mode++;
-    key = 0;// resset key after process
-  }
-}
+
 /* Calculate checksum
  */
 uint16_t MP3_checksum (void) {
@@ -423,7 +429,7 @@ void MP3_send_cmd (uint8_t cmd, uint16_t high_arg, uint16_t low_arg) {
 	for (i=0; i<10; i++) {
 		char* data = &mp3_cmd_buf[0];
 		int size = sizeof(mp3_cmd_buf);
-		HAL_UART_Transmit(&huart3,data,size,1000);
+		HAL_UART_Transmit(&huart3,data,size,2000);
 //        USART_SendData(USART3, mp3_cmd_buf[i]);
 //        while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET)
 				{
@@ -431,11 +437,10 @@ void MP3_send_cmd (uint8_t cmd, uint16_t high_arg, uint16_t low_arg) {
 		}
 		*/
 		int size = sizeof(mp3_cmd_buf);
-		HAL_StatusTypeDef status = HAL_ERROR;
-		uint8_t i = 0;
+
 //		while((status != HAL_OK) || i <= 10)
 //			{
-				status = HAL_UART_Transmit(&huart3,&mp3_cmd_buf[0],size,300);
+				HAL_UART_Transmit(&huart3,&mp3_cmd_buf[0],size,300);
 //				i++;
 //		}
 		//memset(&mp3_cmd_buf[0], 0, sizeof mp3_cmd_buf);
