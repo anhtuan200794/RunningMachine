@@ -24,11 +24,23 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+struct __FILE
+{
+  int handle;
+  /* Whatever you require here. If the only file you are using is */
+  /* standard output using printf() for debugging, no file handling */
+  /* is required. */
+};
+/*send text over SWV*/
+int fputc(int ch, FILE *f) {
+    ITM_SendChar(ch);//send method for SWV
+    return(ch);
+}
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -40,6 +52,7 @@
 #define MP3_PAUSE					0x0E
 #define MP3_STOP				0x16
 
+#define COUNT_TO_ON_OFF  10
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,6 +75,9 @@ bool isMode = false;
 bool isPressStop = false;
 bool isOn = true;
 int nStopPress = 0;
+uint32_t previousTick = 0;
+uint32_t currentTick = 0;
+int step = 0;
 char * str = "Hello!\r\n";
 uint8_t mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x01, 0x0, 0x0, 0x00, 0x00, 0xEF};
 /* USER CODE END PV */
@@ -98,6 +114,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	printf("Application start\n");
   HAL_Init();
 
   /* USER CODE BEGIN Init */
@@ -130,7 +147,64 @@ int main(void)
   {
     /* USER CODE END WHILE */
 				input = GPIOA->IDR;
+		
 		if(isOn){
+			currentTick = HAL_GetTick();
+			if(currentTick - previousTick >= 20000 && isStart) //2 minutes
+			{
+				previousTick = currentTick;
+				switch (step)
+				{
+					case 1:
+					{
+						MP3_play(19);
+						break;
+					}
+					case 2:
+					{
+						MP3_play(20);
+						break;
+					}
+					case 3:
+					{
+						MP3_play(21);
+						break;
+					}
+					case 4:
+					{
+						MP3_play(22);
+						break;
+					}
+					case 5:
+					{
+						MP3_play(23);
+						break;
+					}
+					case 6:
+					{
+						MP3_play(24);
+						break;
+					}
+					case 7:
+					{
+						MP3_play(25);
+						break;
+					}
+					case 8:
+					{
+						MP3_play(26);
+						break;
+					}
+					case 9:
+					{
+						MP3_play(27);
+						break;
+					}
+					default:
+						break;
+				}
+				step++;
+			}
 			if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :4
         {
           //key = 'a';
@@ -195,6 +269,8 @@ int main(void)
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key Start;
         {
+					previousTick = HAL_GetTick();
+					step = 1;
 					isPressStop = false;
 //          key = '7';
 //          HAL_Delay(150);
@@ -215,7 +291,8 @@ int main(void)
 //          
 //          HAL_Delay(150);
 					isPressStop = true;
-					MP3_stop();
+					//MP3_stop();
+					HAL_Delay(200);
 					if(isPressStop)
 					{
 						nStopPress++;
@@ -223,20 +300,28 @@ int main(void)
 					
 					if (isStart == true) {  // stop
 						MP3_play(2);
-					} else if (nStopPress == 5){
+					} else if (nStopPress == COUNT_TO_ON_OFF){ // /// turn on/off audio manual
 						if(isOn)
+						{
 							isOn = false;
+							MP3_play(18);
+						}
+							
 						else
+						{
 							isOn = true;
+							MP3_play(17);
+						}
 						nStopPress = 0;
 					}
+					step = 0;
 					isStart = false;
 					mode = 1 ; // reset mode
 					key = 0;// resset key after process
 					nSetup = 1; // reset nSetup
 					isSetup = false;
 					isMode = false;
-					HAL_Delay(200);
+					//HAL_Delay(100);
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key Mode
         { 
@@ -322,7 +407,7 @@ int main(void)
 						MP3_play(16);
           HAL_Delay(200);
         }
-		} else {
+		} else { /// turn off audio manual
 			if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :4
         {
           //key = 'a';
@@ -368,6 +453,7 @@ int main(void)
 //          HAL_Delay(150);
 					isPressStop = true;
 					MP3_stop();
+					HAL_Delay(200);
 					if(isPressStop)
 					{
 						nStopPress++;
@@ -375,11 +461,19 @@ int main(void)
 					
 					if (isStart == true) {  // stop
 						MP3_play(2);
-					} else if (nStopPress == 5){
+					} else if (nStopPress == COUNT_TO_ON_OFF){ // /// turn on/off audio manual
 						if(isOn)
+						{
 							isOn = false;
+							MP3_play(18);
+						}
+							
 						else
+						{
 							isOn = true;
+							MP3_play(17);
+						}
+							
 						nStopPress = 0;
 					}
 					isStart = false;
@@ -388,7 +482,7 @@ int main(void)
 					nSetup = 1; // reset nSetup
 					isSetup = false;
 					isMode = false;
-					HAL_Delay(200);
+					//HAL_Delay(100);
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key Mode
         { 
@@ -539,6 +633,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+	__HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -606,13 +701,14 @@ void MP3_send_cmd (uint8_t cmd, uint16_t high_arg, uint16_t low_arg) {
 }
 void MP3_stop(void)
 {
-	
+	printf("MP3 Stop !\n");
 	MP3_send_cmd(MP3_STOP,0,0);
 	//MP3_send_cmd(MP3_RESET,0,0);
 }
 
 void MP3_play(uint8_t index)
 {
+	printf("Play: %d -- IsStart: %d -- IsMode: %d -- isOn: %d -- isSetup: %d\n",index,isStart,isMode,isOn,isSetup);
 	MP3_send_cmd(MP3_STOP,0,0);
 	HAL_Delay(500);
 	MP3_send_cmd(MP3_TRAKING_NUM,0,index);

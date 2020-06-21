@@ -26,3 +26,4 @@ keypadread\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 keypadread\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 keypadread\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 keypadread\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+keypadread\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
