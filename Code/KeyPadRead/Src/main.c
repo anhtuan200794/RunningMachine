@@ -150,7 +150,7 @@ int main(void)
 		
 		if(isOn){
 			currentTick = HAL_GetTick();
-			if(currentTick - previousTick >= 20000 && isStart) //2 minutes
+			if(currentTick - previousTick >= 120000 && isStart) //2 minutes
 			{
 				previousTick = currentTick;
 				switch (step)
@@ -210,7 +210,7 @@ int main(void)
           //key = 'a';
 					isPressStop = false;
 					if(isStart)
-						MP3_play(11);
+						MP3_play(13);
           HAL_Delay(200);
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_0)))) // Key B incl: 4
@@ -224,7 +224,7 @@ int main(void)
         {
 					isPressStop = false;
           if(isStart)
-						MP3_play(13);
+						MP3_play(11);
           HAL_Delay(200);
         }
         /*  Check Key input from the second pin */
@@ -390,7 +390,7 @@ int main(void)
         {
 					isPressStop = false;
            if(isStart)
-						MP3_play(14);
+						MP3_play(16);
           HAL_Delay(200);
         }
 				else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_3)))) // Key E speed 6
@@ -404,7 +404,7 @@ int main(void)
         {
 					isPressStop = false;
            if(isStart)
-						MP3_play(16);
+						MP3_play(14);
           HAL_Delay(200);
         }
 		} else { /// turn off audio manual
