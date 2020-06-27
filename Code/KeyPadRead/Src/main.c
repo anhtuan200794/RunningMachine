@@ -75,6 +75,7 @@ bool isMode = false;
 bool isPressStop = false;
 bool isOn = true;
 int nStopPress = 0;
+int nVol = 30;
 uint32_t previousTick = 0;
 uint32_t currentTick = 0;
 int step = 0;
@@ -134,7 +135,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	MP3_reset();
 	HAL_Delay(2000);
-	MP3_setVol(30);
+	MP3_setVol(nVol);
 	HAL_Delay(200);
 	MP3_play(1);
   /* USER CODE END 2 */
@@ -205,23 +206,25 @@ int main(void)
 				}
 				step++;
 			}
-			if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :4
+			if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :3
         {
-          //key = 'a';
+          key = 'a';
 					isPressStop = false;
 					if(isStart)
 						MP3_play(13);
           HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_0)))) // Key B incl: 4
+        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_0)))) // Key B incl: 6
         {
+					key = 'b';
 					isPressStop = false;
           if(isStart)
 						MP3_play(12);
           HAL_Delay(200);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_0)))) // Key C incl: 12
+        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_0)))) // Key C incl: 9
         {
+					key = 'c';
 					isPressStop = false;
           if(isStart)
 						MP3_play(11);
@@ -238,7 +241,7 @@ int main(void)
         else if(!(input & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1))))//          key = Program
         {
 					isPressStop = false;
-//          key = '6';
+          key = '6';
 //          HAL_Delay(150);
 					if (isStart == false && isSetup == false) 
 						{
@@ -272,7 +275,7 @@ int main(void)
 					previousTick = HAL_GetTick();
 					step = 1;
 					isPressStop = false;
-//          key = '7';
+          key = '7';
 //          HAL_Delay(150);
 					if (isStart == false) 
 					{ // start
@@ -288,7 +291,7 @@ int main(void)
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1)))) //key Stop;
         {
-//          
+          key = '8';
 //          HAL_Delay(150);
 					isPressStop = true;
 					//MP3_stop();
@@ -325,6 +328,7 @@ int main(void)
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key Mode
         { 
+					key = '9'
 					isPressStop = false;
 						if (isStart == false && isMode == false) // setup
 						{
@@ -372,17 +376,37 @@ int main(void)
           key = '2';
           HAL_Delay(150);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2)))) // Key +
         {
 					isPressStop = false;
-          key = '3';
-          HAL_Delay(150);
+          key = '+';
+					nVol += 5;
+					if(nVol >= 30)
+						nVol = 30;
+					if(!(isMode||isSetup||isStart))
+					{
+						MP3_setVol(nVol);
+						HAL_Delay(100);
+						MP3_play(28);
+						printf("Vol: %d\n",nVol);
+					}
+          HAL_Delay(50);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2))))// key -
         {
 					isPressStop = false;
-          key = '4';
-          HAL_Delay(150);
+          key = '-';
+          nVol -= 5;
+					if(nVol <= 0)
+						nVol = 0;
+					if(!(isMode||isSetup||isStart))
+					{
+						MP3_setVol(nVol);
+						HAL_Delay(100);
+						MP3_play(28);
+						printf("Vol: %d\n",nVol);
+					}
+          HAL_Delay(50);
         }
         
         /* Check Key input from the fourt pin */
@@ -407,6 +431,7 @@ int main(void)
 						MP3_play(14);
           HAL_Delay(200);
         }
+//-----------------------------------------------------------------------------------------------------				
 		} else { /// turn off audio manual
 			if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :4
         {
@@ -510,13 +535,13 @@ int main(void)
           
           HAL_Delay(150);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2))))// +
         {
 					isPressStop = false;
          
           HAL_Delay(150);
         }
-        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2))))
+        else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2)))) // -
         {
 					isPressStop = false;
           
@@ -708,7 +733,8 @@ void MP3_stop(void)
 
 void MP3_play(uint8_t index)
 {
-	printf("Play: %d -- IsStart: %d -- IsMode: %d -- isOn: %d -- isSetup: %d\n",index,isStart,isMode,isOn,isSetup);
+	printf("Play: %d\n",index);
+	//printf("Play: %d -- IsStart: %d -- IsMode: %d -- isOn: %d -- isSetup: %d\n",index,isStart,isMode,isOn,isSetup);
 	MP3_send_cmd(MP3_STOP,0,0);
 	HAL_Delay(500);
 	MP3_send_cmd(MP3_TRAKING_NUM,0,index);
