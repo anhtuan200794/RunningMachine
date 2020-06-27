@@ -74,11 +74,12 @@ bool isSetup = false;
 bool isMode = false;
 bool isPressStop = false;
 bool isOn = true;
+bool isSpeedChange = false;
 int nStopPress = 0;
 int nVol = 30;
 uint32_t previousTick = 0;
 uint32_t currentTick = 0;
-int step = 0;
+uint32_t tickForPlusMinus = 0;
 char * str = "Hello!\r\n";
 uint8_t mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x01, 0x0, 0x0, 0x00, 0x00, 0xEF};
 /* USER CODE END PV */
@@ -154,57 +155,7 @@ int main(void)
 			if(currentTick - previousTick >= 120000 && isStart) //2 minutes
 			{
 				previousTick = currentTick;
-				switch (step)
-				{
-					case 1:
-					{
-						MP3_play(19);
-						break;
-					}
-					case 2:
-					{
-						MP3_play(20);
-						break;
-					}
-					case 3:
-					{
-						MP3_play(21);
-						break;
-					}
-					case 4:
-					{
-						MP3_play(22);
-						break;
-					}
-					case 5:
-					{
-						MP3_play(23);
-						break;
-					}
-					case 6:
-					{
-						MP3_play(24);
-						break;
-					}
-					case 7:
-					{
-						MP3_play(25);
-						break;
-					}
-					case 8:
-					{
-						MP3_play(26);
-						break;
-					}
-					case 9:
-					{
-						MP3_play(27);
-						break;
-					}
-					default:
-						break;
-				}
-				step++;
+				MP3_play(19);	
 			}
 			if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key A incl :3
         {
@@ -272,8 +223,7 @@ int main(void)
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key Start;
         {
-					previousTick = HAL_GetTick();
-					step = 1;
+					tickForPlusMinus = previousTick = HAL_GetTick();
 					isPressStop = false;
           key = '7';
 //          HAL_Delay(150);
@@ -294,7 +244,7 @@ int main(void)
           key = '8';
 //          HAL_Delay(150);
 					isPressStop = true;
-					//MP3_stop();
+					MP3_stop();
 					HAL_Delay(200);
 					if(isPressStop)
 					{
@@ -317,7 +267,6 @@ int main(void)
 						}
 						nStopPress = 0;
 					}
-					step = 0;
 					isStart = false;
 					mode = 1 ; // reset mode
 					key = 0;// resset key after process
@@ -328,7 +277,7 @@ int main(void)
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key Mode
         { 
-					key = '9'
+					key = '9';
 					isPressStop = false;
 						if (isStart == false && isMode == false) // setup
 						{
@@ -379,6 +328,7 @@ int main(void)
         else if(!(input & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2)))) // Key +
         {
 					isPressStop = false;
+					previousTick  = HAL_GetTick();
           key = '+';
 					nVol += 5;
 					if(nVol >= 30)
@@ -387,14 +337,23 @@ int main(void)
 					{
 						MP3_setVol(nVol);
 						HAL_Delay(100);
-						MP3_play(28);
+						MP3_play(20);
 						printf("Vol: %d\n",nVol);
+					}
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForPlusMinus) >= 30000) /// after 30s if user adjust speed it will remind keep safe
+						{
+							MP3_play(21);
+						}
+						tickForPlusMinus = HAL_GetTick();
 					}
           HAL_Delay(50);
         }
         else if(!(input & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2))))// key -
         {
 					isPressStop = false;
+					previousTick  = HAL_GetTick();
           key = '-';
           nVol -= 5;
 					if(nVol <= 0)
@@ -403,8 +362,16 @@ int main(void)
 					{
 						MP3_setVol(nVol);
 						HAL_Delay(100);
-						MP3_play(28);
+						MP3_play(20);
 						printf("Vol: %d\n",nVol);
+					}
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForPlusMinus) >= 30000) // after 30s if user adjust speed it will remind keep safe
+						{
+							MP3_play(22);
+						}
+						tickForPlusMinus = HAL_GetTick();
 					}
           HAL_Delay(50);
         }
@@ -568,15 +535,6 @@ int main(void)
           HAL_Delay(200);
         }
 		}
-        /* Check Key input from the first pin */
-				
-				
-    /* USER CODE BEGIN 3 */
-//		if(key != 'k'){
-//			//HAL_UART_Transmit(&huart3,(uint8_t *)&key,1,432);
-//			playVoice(key);
-//			key = 'k';
-//		}
   }
   /* USER CODE END 3 */
 }
