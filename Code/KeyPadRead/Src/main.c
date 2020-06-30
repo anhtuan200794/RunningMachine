@@ -46,7 +46,7 @@ int fputc(int ch, FILE *f) {
 
 #define COUNT_TO_ON_OFF  10
 #define TIME_REMIND_ADJUST_SPEED 120000
-#define TIME_ADJUST_SPEED_ALARM 5000 
+#define TIME_ADJUST_SPEED_ALARM 5000
 #define TIME_GOTO_SLEEP_MODE 600000
 
 UART_HandleTypeDef huart3;
@@ -68,6 +68,7 @@ uint32_t sleepModeTick = 0;
 uint32_t remindTick = 0;
 uint32_t currentTick = 0;
 uint32_t tickForPlusMinus = 0;
+uint32_t tickForCline = 0;
 uint8_t mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x01, 0x0, 0x0, 0x00, 0x00, 0xEF};
 
 
@@ -144,10 +145,30 @@ int main(void)
           HAL_Delay(200);
         }
         /*  Check Key keyPadData from the second pin */
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1))))
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1)))) // Incline +
         {
-					
           key = 0;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForCline) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust incline it will remind keep safe
+						{
+							MP3_play(24);
+						}
+						tickForCline = HAL_GetTick();
+					}
+          HAL_Delay(150);
+        }
+				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_0)))) // Incline + 2
+        {
+          key = 0;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForCline) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust incline it will remind keep safe
+						{
+							MP3_play(24);
+						}
+						tickForCline = HAL_GetTick();
+					}
           HAL_Delay(150);
         }
         
@@ -184,7 +205,7 @@ int main(void)
         }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key Start;
         {
-					tickForPlusMinus = remindTick = HAL_GetTick();
+					tickForCline = tickForPlusMinus = remindTick = HAL_GetTick();
 					
           key = 7;
 //          HAL_Delay(150);
@@ -260,12 +281,32 @@ int main(void)
           HAL_Delay(200);
         }
         /*  Check Key keyPadData from the third pin */
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_2))))
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_2))))// Incline - 
         {
           key = 1;
           HAL_Delay(150);
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForCline) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust incline it will remind keep safe
+						{
+							MP3_play(25);
+						}
+						tickForCline = HAL_GetTick();
+					}
         }
-        
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_0)))) // Incline - 2
+        {
+          key = 1;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForCline) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust incline it will remind keep safe
+						{
+							MP3_play(25);
+						}
+						tickForCline = HAL_GetTick();
+					}
+          HAL_Delay(150);
+        }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_2))))
         {
           key = 2;
