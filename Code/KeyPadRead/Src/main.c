@@ -64,6 +64,7 @@ bool isSpeedChange = false;
 bool isSleep = false;
 int nStopPress = 0;
 int nVol = 30;
+GPIO_PinState safeKey = GPIO_PIN_RESET;
 uint32_t sleepModeTick = 0;
 uint32_t remindTick = 0;
 uint32_t currentTick = 0;
@@ -102,13 +103,13 @@ int main(void)
 	HAL_Delay(200);
 	MP3_play(1);
   sleepModeTick = HAL_GetTick();
-
   while (1)
   {
     /* USER CODE END WHILE */
 		keyPadData = GPIOA->IDR;
+		safeKey = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4); // check safe key
 		
-		if(isOn && !isSleep){
+		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
 			currentTick = HAL_GetTick();
 			
 			if(currentTick - remindTick >= TIME_REMIND_ADJUST_SPEED && isStart) //2 minutes remind adjust speed
@@ -550,9 +551,14 @@ int main(void)
 			{
 				isPressStop = false;
 			}
+			if(safeKey == GPIO_PIN_SET)
+			{
+				MP3_play(26);
+				SetDefaulData();
+			}
 			sleepModeTick = HAL_GetTick();
 			isSleep = false;
-			printf("Key: %d -- IsStart: %d -- IsMode: %d -- isOn: %d -- isSetup: %d -- isSleep: %d\n",key,isStart,isMode,isOn,isSetup,isSleep);
+			printf("Key: %d -- IsStart: %d -- IsMode: %d -- isOn: %d -- isSetup: %d -- isSleep: %d -- SafeKey: %d\n",key,isStart,isMode,isOn,isSetup,isSleep, safeKey);
 			key = 100;
 		}
   }
@@ -650,6 +656,13 @@ static void MX_GPIO_Init(void)
   //GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	
+	/*Configure GPIO pin : PB4 */
+	GPIO_InitStruct.Pin = GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+	
 
 }
 
@@ -672,6 +685,7 @@ void SetDefaulData(void)
 	remindTick = 0;
 	currentTick = 0;
 	tickForPlusMinus = 0;
+	safeKey = GPIO_PIN_SET;
 }
 /* Calculate checksum
  */
