@@ -107,7 +107,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 		keyPadData = GPIOA->IDR;
-		safeKey = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4); // check safe key
+		safeKey = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0); // check safe key
 		
 		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
 			currentTick = HAL_GetTick();
@@ -658,7 +658,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 	
 	/*Configure GPIO pin : PB4 */
-	GPIO_InitStruct.Pin = GPIO_PIN_4;
+	GPIO_InitStruct.Pin = GPIO_PIN_0;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
