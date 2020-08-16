@@ -45,11 +45,12 @@ int fputc(int ch, FILE *f) {
 #define MP3_STOP				0x16
 
 #define COUNT_TO_ON_OFF  10
-#define TIME_REMIND_ADJUST_SPEED 120000
+#define TIME_REMIND_ADJUST_SPEED 120000 //2min
 #define TIME_ADJUST_SPEED_ALARM 5000
 #define TIME_GOTO_SLEEP_MODE 600000
 #define TIME_TO_CONGRATULATE 1200000 //20min
 #define PROGRAM_TIMEOUT 30000
+#define TIME_TO_CONGRATULATE_STOP 30000 //30s
 
 UART_HandleTypeDef huart3;
 
@@ -65,8 +66,9 @@ bool isOn = true;
 bool isSpeedChange = false;
 bool isSleep = false;
 int nStopPress = 0;
-int nVol = 30;
+int nVol = 20;
 GPIO_PinState safeKey = GPIO_PIN_RESET;
+GPIO_PinState lastSafeKeyStatus = GPIO_PIN_RESET;
 uint32_t sleepModeTick = 0;
 uint32_t remindTick = 0;
 uint32_t currentTick = 0;
@@ -74,6 +76,7 @@ uint32_t tickForPlusMinus = 0;
 uint32_t tickForCline = 0;
 uint32_t tickForCongratulate = 0;
 uint32_t tickForProgramTimeout = 0;
+uint32_t startick = 0;
 uint8_t mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x01, 0x0, 0x0, 0x00, 0x00, 0xEF};
 
 
@@ -105,13 +108,27 @@ int main(void)
 	HAL_Delay(2000);
 	MP3_setVol(nVol);
 	HAL_Delay(200);
-	MP3_play(1);
+	MP3_play(31);
   sleepModeTick = HAL_GetTick();
+	
   while (1)
   {
     /* USER CODE END WHILE */
 		keyPadData = GPIOA->IDR;
 		safeKey = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0); // check safe key
+		if(lastSafeKeyStatus == GPIO_PIN_SET && safeKey == GPIO_PIN_RESET)
+		{
+			// replay welcome sound
+			MP3_play(30);
+			HAL_Delay(4000);
+			MP3_play(1);
+			
+		}
+		if(lastSafeKeyStatus == GPIO_PIN_RESET && safeKey == GPIO_PIN_SET)
+		{
+			MP3_play(29);
+		}
+		lastSafeKeyStatus = safeKey;
 		
 		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
 			currentTick = HAL_GetTick();
@@ -163,6 +180,7 @@ int main(void)
         /*  Check Key keyPadData from the second pin */
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1)))) // Incline +
         {
+					remindTick = HAL_GetTick();
           key = 0;
 					if(isStart)
 					{
@@ -176,6 +194,7 @@ int main(void)
         }
 				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_0)))) // Incline + 2
         {
+					remindTick = HAL_GetTick();
           key = 0;
 					if(isStart)
 					{
@@ -212,6 +231,7 @@ int main(void)
 								break;
 							case 14:
 								mode = 0; // mode will be set to 1 in the end of switch
+								isMode = false;
 								break;
 							default:
 								break;
@@ -222,7 +242,7 @@ int main(void)
         }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key Start;
         {
-					tickForCline = tickForPlusMinus = tickForCongratulate = remindTick = HAL_GetTick();
+					startick = tickForCline = tickForPlusMinus = tickForCongratulate = remindTick = HAL_GetTick();
 					
           key = 7;
 //          HAL_Delay(150);
@@ -248,7 +268,10 @@ int main(void)
 					}
 					
 					if (isStart == true) {  // stop
-						MP3_play(2);
+						if((HAL_GetTick() - startick) > TIME_TO_CONGRATULATE_STOP)
+						{
+							MP3_play(2);
+						}		
 					} else if (nStopPress == COUNT_TO_ON_OFF){ // /// turn on/off audio manual
 						if(isOn)
 						{
@@ -300,6 +323,7 @@ int main(void)
         /*  Check Key keyPadData from the third pin */
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_2))))// Incline - 
         {
+					remindTick = HAL_GetTick();
           key = 1;
           HAL_Delay(150);
 					if(isStart)
@@ -313,6 +337,7 @@ int main(void)
         }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_0)))) // Incline - 2
         {
+					remindTick = HAL_GetTick();
           key = 1;
 					if(isStart)
 					{
@@ -358,7 +383,7 @@ int main(void)
 					}
           HAL_Delay(50);
         }
-				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_3)))) // Key + 2
+				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_3 |GPIO_PIN_4)))) // Key + 2
         {					
 					remindTick  = HAL_GetTick();
           key = 16;

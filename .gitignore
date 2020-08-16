@@ -28,3 +28,9 @@ Code/KeyPadRead/MDK-ARM/KeyPadRead/stm32f1xx_hal_tim_ex.o
 Code/KeyPadRead/MDK-ARM/KeyPadRead/stm32f1xx_hal_uart.o
 Code/KeyPadRead/MDK-ARM/KeyPadRead/stm32f1xx_it.o
 Code/KeyPadRead/MDK-ARM/KeyPadRead/system_stm32f1xx.o
+*.ITAD
+*.nguyen
+*.ITAD
+Code/KeyPadRead/MDK-ARM/KeyPadRead.uvguix.ITAD
+Code/KeyPadRead/MDK-ARM/KeyPadRead.uvprojx
+Code/KeyPadRead/MDK-ARM/KeyPadRead.uvoptx
