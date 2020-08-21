@@ -119,9 +119,7 @@ int main(void)
 		if(lastSafeKeyStatus == GPIO_PIN_SET && safeKey == GPIO_PIN_RESET)
 		{
 			// replay welcome sound
-			MP3_play(30);
-			HAL_Delay(4000);
-			MP3_play(1);
+			MP3_play(31);
 			
 		}
 		if(lastSafeKeyStatus == GPIO_PIN_RESET && safeKey == GPIO_PIN_SET)
