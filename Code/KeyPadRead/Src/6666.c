@@ -66,7 +66,7 @@ bool isOn = true;
 bool isSpeedChange = false;
 bool isSleep = false;
 int nStopPress = 0;
-int nVol = 20;
+int nVol = 15;
 GPIO_PinState safeKey = GPIO_PIN_RESET;
 GPIO_PinState lastSafeKeyStatus = GPIO_PIN_RESET;
 uint32_t sleepModeTick = 0;
@@ -322,9 +322,9 @@ int main(void)
         {					
 					remindTick  = HAL_GetTick();
           key = 4;
-					nVol += 5;
-					if(nVol >= 30)
-						nVol = 30;
+					nVol += 2;
+					if(nVol >= 20)
+						nVol = 20;
 					if(!(isMode||isSetup||isStart))
 					{
 						MP3_setVol(nVol);
@@ -346,7 +346,7 @@ int main(void)
         {	
 					remindTick  = HAL_GetTick();
           key = 5;
-          nVol -= 5;
+          nVol -= 2;
 					if(nVol <= 0)
 						nVol = 0;
 					if(!(isMode||isSetup||isStart))
@@ -651,7 +651,6 @@ void SetDefaulData(void)
 	isSpeedChange = false;
 	//isSleep = false;
 	nStopPress = 0;
-	nVol = 30;
 	sleepModeTick = 0;
 	remindTick = 0;
 	currentTick = 0;
