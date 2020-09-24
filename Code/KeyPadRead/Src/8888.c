@@ -48,7 +48,7 @@ int fputc(int ch, FILE *f) {
 #define TIME_REMIND_ADJUST_SPEED 120000 //2min
 #define TIME_ADJUST_SPEED_ALARM 5000
 #define TIME_GOTO_SLEEP_MODE 600000
-#define TIME_TO_CONGRATULATE 1200000 //20min
+#define TIME_TO_CONGRATULATE 300000 //5min
 #define PROGRAM_TIMEOUT 30000
 #define TIME_TO_CONGRATULATE_STOP 30000 //30s
 
@@ -66,7 +66,7 @@ bool isOn = true;
 bool isSpeedChange = false;
 bool isSleep = false;
 int nStopPress = 0;
-int nVol = 20;
+int nVol = 15;
 GPIO_PinState safeKey = GPIO_PIN_RESET;
 GPIO_PinState lastSafeKeyStatus = GPIO_PIN_RESET;
 uint32_t sleepModeTick = 0;
@@ -118,8 +118,8 @@ int main(void)
 		safeKey = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0); // check safe key
 		if(lastSafeKeyStatus == GPIO_PIN_SET && safeKey == GPIO_PIN_RESET)
 		{
-			// replay welcome sound
-			MP3_play(31);
+			// Let continue sound
+			MP3_play(30);
 			
 		}
 		if(lastSafeKeyStatus == GPIO_PIN_RESET && safeKey == GPIO_PIN_SET)
@@ -136,7 +136,7 @@ int main(void)
 				remindTick = currentTick;
 				MP3_play(19);	
 			}
-			if(currentTick - tickForCongratulate >= TIME_TO_CONGRATULATE && isStart) //20 minutes congratulate
+			if(currentTick - tickForCongratulate >= TIME_TO_CONGRATULATE && isStart) //5 minutes congratulate
 			{
 				tickForCongratulate = currentTick;
 				MP3_play(27);
