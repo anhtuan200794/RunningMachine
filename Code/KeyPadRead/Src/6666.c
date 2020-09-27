@@ -123,14 +123,16 @@ int main(void)
 		{
 			// Let continue
 			MP3_play(30);
+			HAL_Delay(1000);
 			
 		}
 		if(lastSafeKeyStatus == GPIO_PIN_RESET && safeKey == GPIO_PIN_SET)
 		{
 			MP3_play(29); // hay cai khoa an toan truoc khi luyen tap
+			HAL_Delay(1000);
+			SetDefaulData();
 		}
 		lastSafeKeyStatus = safeKey;
-		
 		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
 			currentTick = HAL_GetTick();
 			
@@ -155,6 +157,12 @@ int main(void)
 				SetDefaulData();
 				printf("program timeout\n");
 			}
+   
+																							   
+	
+				   
+								 
+									 
 			if(((HAL_GetTick()- sleepModeTick) >= TIME_GOTO_SLEEP_MODE) && !isStart) // sleep mode check
 			{
 				isSleep = true;
@@ -200,6 +208,21 @@ int main(void)
         }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_2))))//          key = Program
         {
+	   
+					
+	   
+								   
+	  
+						 
+		 
+		
+																							  
+		 
+	 
+				  
+						   
+											   
+	   
 					
           key = 6;
 //          HAL_Delay(150);
@@ -326,6 +349,30 @@ int main(void)
 						tickForCline = HAL_GetTick();
 					}
         }
+	  
+																																 
+	   
+					
+	   
+								   
+	  
+						 
+		 
+																	 
+		 
+				  
+						 
+		 
+																	 
+		 
+				  
+						 
+		 
+																			  
+			  
+								 
+				  
+			   
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2)))) // Key +
         {					
 					remindTick  = HAL_GetTick();
@@ -350,6 +397,20 @@ int main(void)
 					}
           HAL_Delay(50);
         }
+	  
+																																   
+	   
+					
+	   
+									   
+	  
+						
+		 
+																			  
+		  
+								 
+				  
+					
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2))) )// key -
         {	
 					remindTick  = HAL_GetTick();
@@ -374,6 +435,21 @@ int main(void)
 					}
           HAL_Delay(50);
         }
+	  
+																																  
+	   
+					
+	   
+									   
+	  
+						
+		 
+		
+													 
+																					  
+		 
+			  
+					  
         /* Check Key keyPadData from the fourt pin */
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_3)))) // Key D speed 3
         {
@@ -648,6 +724,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void SetDefaulData(void)
 {
+	printf("Reset data");
 	key = 100; // default
 	mode = 1;
 	nSetup = 1;
@@ -659,11 +736,11 @@ void SetDefaulData(void)
 	isSpeedChange = false;
 	//isSleep = false;
 	nStopPress = 0;
+						
 	sleepModeTick = 0;
 	remindTick = 0;
 	currentTick = 0;
 	tickForPlusMinus = 0;
-	safeKey = GPIO_PIN_SET;
 }
 /* Calculate checksum
  */
