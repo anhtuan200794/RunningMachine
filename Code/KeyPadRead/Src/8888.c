@@ -123,11 +123,14 @@ int main(void)
 		{
 			// Let continue
 			MP3_play(30);
+			HAL_Delay(1000);
 			
 		}
 		if(lastSafeKeyStatus == GPIO_PIN_RESET && safeKey == GPIO_PIN_SET)
 		{
 			MP3_play(29); // hay cai khoa an toan truoc khi luyen tap
+			HAL_Delay(1000);
+			SetDefaulData();
 		}
 		lastSafeKeyStatus = safeKey;
 		
@@ -731,7 +734,6 @@ void SetDefaulData(void)
 	remindTick = 0;
 	currentTick = 0;
 	tickForPlusMinus = 0;
-	safeKey = GPIO_PIN_SET;
 }
 /* Calculate checksum
  */
