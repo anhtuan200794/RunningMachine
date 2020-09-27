@@ -1,0 +1,872 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "TextToSpeechTest/1.0.0": {
+        "dependencies": {
+          "JUnitTestLogger": "1.1.0",
+          "Microsoft.NET.Test.Sdk": "16.5.0",
+          "QuickStart": "1.0.0",
+          "TextToSpeech": "1.0.0",
+          "testutil": "1.0.0",
+          "xunit.runner.visualstudio": "2.4.1"
+        },
+        "runtime": {
+          "TextToSpeechTest.dll": {}
+        }
+      },
+      "CommandLineParser/2.7.82": {
+        "runtime": {
+          "lib/netstandard2.0/CommandLine.dll": {
+            "assemblyVersion": "2.7.82.0",
+            "fileVersion": "2.7.82.0"
+          }
+        }
+      },
+      "Google.Api.CommonProtos/2.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.11.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.CommonProtos.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax/3.0.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax.Grpc/3.0.0": {
+        "dependencies": {
+          "Google.Api.CommonProtos": "2.0.0",
+          "Google.Api.Gax": "3.0.0",
+          "Google.Apis.Auth": "1.44.1",
+          "Grpc.Auth": "2.27.0",
+          "Grpc.Core.Api": "2.27.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.Grpc.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax.Grpc.GrpcCore/3.0.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "3.0.0",
+          "Grpc.Core": "2.27.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.Grpc.GrpcCore.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax.Rest/3.0.0": {
+        "dependencies": {
+          "Google.Api.Gax": "3.0.0",
+          "Google.Apis.Auth": "1.44.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.Rest.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Google.Apis/1.44.1": {
+        "dependencies": {
+          "Google.Apis.Core": "1.44.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "assemblyVersion": "1.44.1.0",
+            "fileVersion": "1.44.1.0"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.44.1": {
+        "dependencies": {
+          "Google.Apis": "1.44.1",
+          "Google.Apis.Core": "1.44.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {
+            "assemblyVersion": "1.44.1.0",
+            "fileVersion": "1.44.1.0"
+          },
+          "lib/netstandard2.0/Google.Apis.Auth.dll": {
+            "assemblyVersion": "1.44.1.0",
+            "fileVersion": "1.44.1.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.44.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.44.1.0",
+            "fileVersion": "1.44.1.0"
+          }
+        }
+      },
+      "Google.Apis.Storage.v1/1.42.0.1744": {
+        "dependencies": {
+          "Google.Apis": "1.44.1",
+          "Google.Apis.Auth": "1.44.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Storage.v1.dll": {
+            "assemblyVersion": "1.42.0.1744",
+            "fileVersion": "1.42.0.1744"
+          }
+        }
+      },
+      "Google.Cloud.Storage.V1/3.0.0-beta02": {
+        "dependencies": {
+          "Google.Api.Gax.Rest": "3.0.0",
+          "Google.Apis.Storage.v1": "1.42.0.1744"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Cloud.Storage.V1.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Google.Cloud.TextToSpeech.V1/2.0.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc.GrpcCore": "3.0.0",
+          "Grpc.Core": "2.27.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Cloud.TextToSpeech.V1.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.11.4": {
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.11.4.0",
+            "fileVersion": "3.11.4.0"
+          }
+        }
+      },
+      "Grpc.Auth/2.27.0": {
+        "dependencies": {
+          "Google.Apis.Auth": "1.44.1",
+          "Grpc.Core.Api": "2.27.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Auth.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.27.0.0"
+          }
+        }
+      },
+      "Grpc.Core/2.27.0": {
+        "dependencies": {
+          "Grpc.Core.Api": "2.27.0",
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.27.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux/native/libgrpc_csharp_ext.x64.so": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux/native/libgrpc_csharp_ext.x86.so": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x64.dll": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x86.dll": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Grpc.Core.Api/2.27.0": {
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.Api.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.27.0.0"
+          }
+        }
+      },
+      "JUnitTestLogger/1.1.0": {
+        "dependencies": {
+          "Microsoft.TestPlatform.ObjectModel": "16.5.0"
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/1.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "4.700.19.46214"
+          }
+        }
+      },
+      "Microsoft.CodeCoverage/16.5.0": {
+        "runtime": {
+          "lib/netcoreapp1.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "16.0.28223.3002"
+          }
+        }
+      },
+      "Microsoft.NET.Test.Sdk/16.5.0": {
+        "dependencies": {
+          "Microsoft.CodeCoverage": "16.5.0",
+          "Microsoft.TestPlatform.TestHost": "16.5.0"
+        }
+      },
+      "Microsoft.TestPlatform.ObjectModel/16.5.0": {
+        "dependencies": {
+          "NuGet.Frameworks": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.TestPlatform.CoreUtilities.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          },
+          "lib/netstandard2.0/Microsoft.TestPlatform.PlatformAbstractions.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          },
+          "lib/netstandard2.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll": {
+            "locale": "zh-Hant"
+          },
+          "lib/netstandard2.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.TestPlatform.TestHost/16.5.0": {
+        "dependencies": {
+          "Microsoft.TestPlatform.ObjectModel": "16.5.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.TestPlatform.CommunicationUtilities.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          },
+          "lib/netcoreapp2.1/Microsoft.TestPlatform.CrossPlatEngine.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          },
+          "lib/netcoreapp2.1/Microsoft.TestPlatform.Utilities.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          },
+          "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.Common.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          },
+          "lib/netcoreapp2.1/testhost.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          }
+        },
+        "resources": {
+          "lib/netcoreapp2.1/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netcoreapp2.1/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netcoreapp2.1/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netcoreapp2.1/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netcoreapp2.1/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netcoreapp2.1/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netcoreapp2.1/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netcoreapp2.1/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netcoreapp2.1/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netcoreapp2.1/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netcoreapp2.1/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netcoreapp2.1/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netcoreapp2.1/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netcoreapp2.1/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netcoreapp2.1/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netcoreapp2.1/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netcoreapp2.1/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netcoreapp2.1/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netcoreapp2.1/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netcoreapp2.1/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netcoreapp2.1/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netcoreapp2.1/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netcoreapp2.1/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netcoreapp2.1/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netcoreapp2.1/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netcoreapp2.1/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netcoreapp2.1/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netcoreapp2.1/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netcoreapp2.1/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netcoreapp2.1/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netcoreapp2.1/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netcoreapp2.1/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netcoreapp2.1/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netcoreapp2.1/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netcoreapp2.1/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netcoreapp2.1/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netcoreapp2.1/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
+            "locale": "zh-Hant"
+          },
+          "lib/netcoreapp2.1/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll": {
+            "locale": "zh-Hant"
+          },
+          "lib/netcoreapp2.1/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
+      "NuGet.Frameworks/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Frameworks.dll": {
+            "assemblyVersion": "5.0.0.6",
+            "fileVersion": "5.0.0.5923"
+          }
+        }
+      },
+      "System.Memory/4.5.3": {},
+      "xunit/2.4.1": {
+        "dependencies": {
+          "xunit.analyzers": "0.10.0",
+          "xunit.assert": "2.4.1",
+          "xunit.core": "2.4.1"
+        }
+      },
+      "xunit.abstractions/2.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/xunit.abstractions.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "xunit.analyzers/0.10.0": {},
+      "xunit.assert/2.4.1": {
+        "runtime": {
+          "lib/netstandard1.1/xunit.assert.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        }
+      },
+      "xunit.core/2.4.1": {
+        "dependencies": {
+          "xunit.extensibility.core": "2.4.1",
+          "xunit.extensibility.execution": "2.4.1"
+        }
+      },
+      "xunit.extensibility.core/2.4.1": {
+        "dependencies": {
+          "xunit.abstractions": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.core.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        }
+      },
+      "xunit.extensibility.execution/2.4.1": {
+        "dependencies": {
+          "xunit.extensibility.core": "2.4.1"
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.execution.dotnet.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        }
+      },
+      "xunit.runner.visualstudio/2.4.1": {
+        "dependencies": {
+          "Microsoft.NET.Test.Sdk": "16.5.0"
+        }
+      },
+      "QuickStart/1.0.0": {
+        "dependencies": {
+          "Google.Cloud.TextToSpeech.V1": "2.0.0"
+        },
+        "runtime": {
+          "QuickStart.dll": {}
+        }
+      },
+      "testutil/1.0.0": {
+        "dependencies": {
+          "Google.Cloud.Storage.V1": "3.0.0-beta02",
+          "xunit": "2.4.1"
+        },
+        "runtime": {
+          "testutil.dll": {}
+        }
+      },
+      "TextToSpeech/1.0.0": {
+        "dependencies": {
+          "CommandLineParser": "2.7.82",
+          "Google.Cloud.TextToSpeech.V1": "2.0.0"
+        },
+        "runtime": {
+          "TextToSpeech.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TextToSpeechTest/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CommandLineParser/2.7.82": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JnjxBu4++EDnYtDzHskiPrPJ9hAna8amu8qlQx8J+2oZnPddDnkR/0FFtQMDz0Cs0YF2lbyW3OmYfRmIrLNY0A==",
+      "path": "commandlineparser/2.7.82",
+      "hashPath": "commandlineparser.2.7.82.nupkg.sha512"
+    },
+    "Google.Api.CommonProtos/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GE3RbDXpPrzaVk1ubaD8b1EpvEYz/MPBUzg0poUcMJa1EKLkkblK5X6ysg6dlXfiNCE/W6VJ13ABtB89UQ2A8g==",
+      "path": "google.api.commonprotos/2.0.0",
+      "hashPath": "google.api.commonprotos.2.0.0.nupkg.sha512"
+    },
+    "Google.Api.Gax/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jDXWaxeOjzUmaFBtEaGuWZmIl6CkR3yRrFuiMPFL9YNR6TWA4EZXl9K8mxae1fi7Z7H0j1CRfyAt2iZlomk9bw==",
+      "path": "google.api.gax/3.0.0",
+      "hashPath": "google.api.gax.3.0.0.nupkg.sha512"
+    },
+    "Google.Api.Gax.Grpc/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CW2AdT0X6zECEIGKQyu+kgpYxnxoigaa/9wm0FqVlYexGsjvajJXA16yHQPC1Q8qWE5PBs3sbh3qwksU0pUwzg==",
+      "path": "google.api.gax.grpc/3.0.0",
+      "hashPath": "google.api.gax.grpc.3.0.0.nupkg.sha512"
+    },
+    "Google.Api.Gax.Grpc.GrpcCore/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yDekiUKDsELhogc/AXG3D0UWWBGcf7l9FxgglN1xC75lNYFjLWVdKfi+bDKquqyvJUASUkJu2n27vuKE7nAWmQ==",
+      "path": "google.api.gax.grpc.grpccore/3.0.0",
+      "hashPath": "google.api.gax.grpc.grpccore.3.0.0.nupkg.sha512"
+    },
+    "Google.Api.Gax.Rest/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BwqDdrOCkA4vi3JlB98B5Ta9rkNa1cY23bxJSJaEcXeshl9AIYJ7TAe/ur3rw+DoHqnPHG5qMzT4AVns9NujvQ==",
+      "path": "google.api.gax.rest/3.0.0",
+      "hashPath": "google.api.gax.rest.3.0.0.nupkg.sha512"
+    },
+    "Google.Apis/1.44.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5l8vy1bwhuKDuE4Uku8qz2YnLaDhK1YJBGqzohx3MiaXyTucZWutovpEGYkvo6014rKUHa4hWDDuPxBJs/yxpA==",
+      "path": "google.apis/1.44.1",
+      "hashPath": "google.apis.1.44.1.nupkg.sha512"
+    },
+    "Google.Apis.Auth/1.44.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5gIhSOw362+daGBT2YgElpQUWgLERsKOS7k8d2FzIxi6wXTpeu7ov5kT4fWrnoX4fUJ+ibxqTfhmEY8UThCxyA==",
+      "path": "google.apis.auth/1.44.1",
+      "hashPath": "google.apis.auth.1.44.1.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.44.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VjN2tpE5++8xRjBcHgXuW7HoxgvPYoAsONj6ekq1Uv20TaC3aDsw+1tVCt1M60pO4mK0vnoZAxupb49B308+0Q==",
+      "path": "google.apis.core/1.44.1",
+      "hashPath": "google.apis.core.1.44.1.nupkg.sha512"
+    },
+    "Google.Apis.Storage.v1/1.42.0.1744": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+Gy/Id5zQE/pmIbNLnCvj1EKzynjDiRrWFN869S6EkzHzUtc4HpauwCiWU3Mdgbwh9gU2d4MbsofKF2b/aCgBA==",
+      "path": "google.apis.storage.v1/1.42.0.1744",
+      "hashPath": "google.apis.storage.v1.1.42.0.1744.nupkg.sha512"
+    },
+    "Google.Cloud.Storage.V1/3.0.0-beta02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7RdZ27h3bQnZoMMfDbPnVbHquvtEy0TAjWQKp4MBQR0J8JA2/TYS3p2DyvrnjXI8N4vgaW7MtsUptDF/eI6avA==",
+      "path": "google.cloud.storage.v1/3.0.0-beta02",
+      "hashPath": "google.cloud.storage.v1.3.0.0-beta02.nupkg.sha512"
+    },
+    "Google.Cloud.TextToSpeech.V1/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-P5wtdw3Ffqn1cA9VAQBkn3kH2SCBLsY4tpTdCL/E/kSLISCInZP5Zk2+tCQje2P16LCBLCkFEQi/x9akycujRA==",
+      "path": "google.cloud.texttospeech.v1/2.0.0",
+      "hashPath": "google.cloud.texttospeech.v1.2.0.0.nupkg.sha512"
+    },
+    "Google.Protobuf/3.11.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dajCxjDCiPyZuqwZCkFJTwhn/0TJ5VesIs4fXvs56ez1VUi68JjhYMMsPjnJ9gcPqJwTMtXMU1WqUdXYiG1x4w==",
+      "path": "google.protobuf/3.11.4",
+      "hashPath": "google.protobuf.3.11.4.nupkg.sha512"
+    },
+    "Grpc.Auth/2.27.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fp0NUZUTJ1Jb5Zz9z/1FDyF2E5PS2S2I8SD90Il6rZW5V2A+1bHtYziF8b3xrLmqlNaukZ4yIhJP+7Igi3Himw==",
+      "path": "grpc.auth/2.27.0",
+      "hashPath": "grpc.auth.2.27.0.nupkg.sha512"
+    },
+    "Grpc.Core/2.27.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iNWowSeJvGCkFwKxpJmhpRBrgAJ0kB+iwyZ0b0z2w1hCqs2ho02699TmDn6IwCgJrTfXtYnsBVevD+gKprmbug==",
+      "path": "grpc.core/2.27.0",
+      "hashPath": "grpc.core.2.27.0.nupkg.sha512"
+    },
+    "Grpc.Core.Api/2.27.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UAHXfV+n6TEMCybML7V+1qWP7G9byGXUE2mtATWpctP7xB8P5J++iYMuyxrprKkC36X/QuUwHJmHpBxlDHzF2g==",
+      "path": "grpc.core.api/2.27.0",
+      "hashPath": "grpc.core.api.2.27.0.nupkg.sha512"
+    },
+    "JUnitTestLogger/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5nIxpRXczNH2To76s/AxmgiXrfMeebLx10R8edNO4w5UNo2diCUf0kQn0qC5+WPnONCjmtzyFrHolK+b7aBemQ==",
+      "path": "junittestlogger/1.1.0",
+      "hashPath": "junittestlogger.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K63Y4hORbBcKLWH5wnKgzyn7TOfYzevIEwIedQHBIkmkEBA9SCqgvom+XTuE+fAFGvINGkhFItaZ2dvMGdT5iw==",
+      "path": "microsoft.bcl.asyncinterfaces/1.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512"
+    },
+    "Microsoft.CodeCoverage/16.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PM5YLtyN45EyUGePJpaNogndlaQPrMgQQXHKMhMESC6KfSVvt+j7+dxBi8NYC6X6dZVysf7ngwhSW3wwvPJRSQ==",
+      "path": "microsoft.codecoverage/16.5.0",
+      "hashPath": "microsoft.codecoverage.16.5.0.nupkg.sha512"
+    },
+    "Microsoft.NET.Test.Sdk/16.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yHZOhVSPuGqgHi+KhHiAZqNY08avkQraXKvgKgDU8c/ztmGzw7gmukkv49EaTq6T3xmp4XroWk3gAlbJHMxl8w==",
+      "path": "microsoft.net.test.sdk/16.5.0",
+      "hashPath": "microsoft.net.test.sdk.16.5.0.nupkg.sha512"
+    },
+    "Microsoft.TestPlatform.ObjectModel/16.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NnLFxmFBCAS6kye2JFszD5WKgj4Zve5KX/R0mhYwh6BVnSeybI2unRnjEPtLyY3CAVhwrY4bh/8LNFtslAcGZg==",
+      "path": "microsoft.testplatform.objectmodel/16.5.0",
+      "hashPath": "microsoft.testplatform.objectmodel.16.5.0.nupkg.sha512"
+    },
+    "Microsoft.TestPlatform.TestHost/16.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ytGymboQIvjNX5pLC0yp/Bz9sGDHqSnLQgBRtd4VrqOUgKmmcfxMYZ6p0TBZgAT1oijdC6xqUZ7rl8mbaaXTJw==",
+      "path": "microsoft.testplatform.testhost/16.5.0",
+      "hashPath": "microsoft.testplatform.testhost.16.5.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
+    "NuGet.Frameworks/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c5JVjuVAm4f7E9Vj+v09Z9s2ZsqFDjBpcsyS3M9xRo0bEdm/LVZSzLxxNvfvAwRiiE8nwe1h2G4OwiwlzFKXlA==",
+      "path": "nuget.frameworks/5.0.0",
+      "hashPath": "nuget.frameworks.5.0.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
+    },
+    "xunit/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XNR3Yz9QTtec16O0aKcO6+baVNpXmOnPUxDkCY97J+8krUYxPvXT1szYYEUdKk4sB8GOI2YbAjRIOm8ZnXRfzQ==",
+      "path": "xunit/2.4.1",
+      "hashPath": "xunit.2.4.1.nupkg.sha512"
+    },
+    "xunit.abstractions/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg==",
+      "path": "xunit.abstractions/2.0.3",
+      "hashPath": "xunit.abstractions.2.0.3.nupkg.sha512"
+    },
+    "xunit.analyzers/0.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4/IDFCJfIeg6bix9apmUtIMwvOsiwqdEexeO/R2D4GReIGPLIRODTpId/l4LRSrAJk9lEO3Zx1H0Zx6uohJDNg==",
+      "path": "xunit.analyzers/0.10.0",
+      "hashPath": "xunit.analyzers.0.10.0.nupkg.sha512"
+    },
+    "xunit.assert/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O/Oe0BS5RmSsM+LQOb041TzuPo5MdH2Rov+qXGS37X+KFG1Hxz7kopYklM5+1Y+tRGeXrOx5+Xne1RuqLFQoyQ==",
+      "path": "xunit.assert/2.4.1",
+      "hashPath": "xunit.assert.2.4.1.nupkg.sha512"
+    },
+    "xunit.core/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zsj5OMU6JasNGERXZy8s72+pcheG6Q15atS5XpZXqAtULuyQiQ6XNnUsp1gyfC6WgqScqMvySiEHmHcOG6Eg0Q==",
+      "path": "xunit.core/2.4.1",
+      "hashPath": "xunit.core.2.4.1.nupkg.sha512"
+    },
+    "xunit.extensibility.core/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yKZKm/8QNZnBnGZFD9SewkllHBiK0DThybQD/G4PiAmQjKtEZyHi6ET70QPU9KtSMJGRYS6Syk7EyR2EVDU4Kg==",
+      "path": "xunit.extensibility.core/2.4.1",
+      "hashPath": "xunit.extensibility.core.2.4.1.nupkg.sha512"
+    },
+    "xunit.extensibility.execution/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7e/1jqBpcb7frLkB6XDrHCGXAbKN4Rtdb88epYxCSRQuZDRW8UtTfdTEVpdTl8s4T56e07hOBVd4G0OdCxIY2A==",
+      "path": "xunit.extensibility.execution/2.4.1",
+      "hashPath": "xunit.extensibility.execution.2.4.1.nupkg.sha512"
+    },
+    "xunit.runner.visualstudio/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBXd1lp1TQr4to2nFv+c4Tf+RnPoQPKglzwLdbdirOUxRaJsCUNDUx2y7E6j9ajgISlTTp1CydFBZCRCUIrwDg==",
+      "path": "xunit.runner.visualstudio/2.4.1",
+      "hashPath": "xunit.runner.visualstudio.2.4.1.nupkg.sha512"
+    },
+    "QuickStart/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "testutil/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TextToSpeech/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

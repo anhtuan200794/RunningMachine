@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "dgSpecHash": "UEJodtB5gKDZc4qEbEaRDXeZ7Xsvmvdou0Y8MbOebutirai1W+SKcPMoio5gNCYVen/uuDRISIISB79OOS0Vjw==",
+  "success": true,
+  "projectFilePath": "E:\\PJ5\\RunningMachine\\texttospeech\\api\\QuickStart\\QuickStart.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.api.commonprotos\\2.0.0\\google.api.commonprotos.2.0.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.api.gax\\3.0.0\\google.api.gax.3.0.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.api.gax.grpc\\3.0.0\\google.api.gax.grpc.3.0.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.api.gax.grpc.grpccore\\3.0.0\\google.api.gax.grpc.grpccore.3.0.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.apis\\1.44.1\\google.apis.1.44.1.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.apis.auth\\1.44.1\\google.apis.auth.1.44.1.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.apis.core\\1.44.1\\google.apis.core.1.44.1.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.cloud.texttospeech.v1\\2.0.0\\google.cloud.texttospeech.v1.2.0.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\grpc.auth\\2.27.0\\grpc.auth.2.27.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\grpc.core\\2.27.0\\grpc.core.2.27.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\grpc.core.api\\2.27.0\\grpc.core.api.2.27.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}
