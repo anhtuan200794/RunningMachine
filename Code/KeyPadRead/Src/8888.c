@@ -46,9 +46,13 @@ int fputc(int ch, FILE *f) {
 #define MP3_STOP				0x16
 
 #define COUNT_TO_ON_OFF  10
-#define TIME_5_MINUTES  300000 //5min
-#define TIME_15_MINUTES 900000//15min
-#define TIME_30_MINUTES 1800000//30min
+#define TIME_30_SECOND	3000
+#define TIME_2_MINUTES	12000
+#define TIME_5_MINUTES  30000 //5min
+#define TIME_15_MINUTES 90000//15min
+#define TIME_20_MINUTES 120000
+#define TIME_25_MINUTES 150000
+#define TIME_30_MINUTES 180000//30min
 #define TIME_ADJUST_SPEED_ALARM 5000
 #define TIME_GOTO_SLEEP_MODE 600000
 //#define TIME_TO_CONGRATULATE 300000 //5min
@@ -136,21 +140,44 @@ int main(void)
 		
 		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
 			currentTick = HAL_GetTick();
-			
-			if((currentTick - startick >= TIME_5_MINUTES) && isStart && (currentTick - startick < TIME_5_MINUTES + 100)) //5 minutes remind adjust speed
+			if(isStart && (currentTick - startick < TIME_5_MINUTES) && (currentTick - remindTick - TIME_30_SECOND < 100))
+			{
+				remindTick = currentTick;
+				printf("30s remind speed up: ");
+				MP3_play(36);
+				HAL_Delay(50);
+			}
+			if(isStart && (currentTick - startick > TIME_5_MINUTES) && (currentTick - remindTick - TIME_2_MINUTES < 100))
+			{
+				remindTick = currentTick;
+				printf("2p remind speed up: ");
+				MP3_play(19);
+				HAL_Delay(50);
+			}
+			if((currentTick - startick >= TIME_5_MINUTES) && isStart && (currentTick - startick - TIME_5_MINUTES < 100)) //5 minutes remind adjust speed
 			{
 				MP3_play(32); // Buoc 4 voi khoang 10p tiep theo
-				HAL_Delay(100);
+				HAL_Delay(50);
 			}
-			if((currentTick - startick >= TIME_15_MINUTES) && isStart && (currentTick - startick < TIME_15_MINUTES + 100)) //15 minutes congratulate
+			if((currentTick - startick >= TIME_15_MINUTES) && isStart && (currentTick - startick - TIME_15_MINUTES < 100)) //15 minutes congratulate
 			{
-				MP3_play(33); // buoc 5 voi khoang 15p tiep theo
-				HAL_Delay(100);
+				MP3_play(33); // buoc 5 voi khoang 5p tiep theo
+				HAL_Delay(50);
 			}
-			if((currentTick - startick >= TIME_30_MINUTES) && isStart && (currentTick - startick < TIME_30_MINUTES + 100)) // sau 30p
+			if((currentTick - startick >= TIME_20_MINUTES) && isStart && (currentTick - startick - TIME_20_MINUTES < 100)) // sau 20p
+			{
+				MP3_play(35); // buoc 6 voi khoang 5p den 10p 
+				HAL_Delay(50);
+			}
+			if((currentTick - startick >= TIME_25_MINUTES) && isStart && (currentTick - startick - TIME_25_MINUTES < 100)) // sau 25p
 			{
 				MP3_play(34); // buoc 6
-				HAL_Delay(100);
+				HAL_Delay(50);
+			}
+			if((currentTick - startick >= TIME_30_MINUTES) && isStart && (currentTick - startick - TIME_30_MINUTES < 100)) // sau 30p
+			{
+				MP3_play(34); // buoc 6
+				HAL_Delay(50);
 			}
 			if(currentTick - tickForProgramTimeout >= PROGRAM_TIMEOUT && isMode)
 				{
@@ -280,7 +307,10 @@ int main(void)
 						if((HAL_GetTick() - startick) > TIME_TO_CONGRATULATE_STOP)
 						{
 							MP3_play(2);
-						}		
+						} else
+						{
+							MP3_stop();
+						}
 					} else if (nStopPress == COUNT_TO_ON_OFF){ // /// turn on/off audio manual
 						if(isOn)
 						{
