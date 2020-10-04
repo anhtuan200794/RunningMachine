@@ -15,7 +15,7 @@
   *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
-	// Code 6666
+	// Code 8888
   */
 /* USER CODE END Header */
 
@@ -47,12 +47,12 @@ int fputc(int ch, FILE *f) {
 
 #define COUNT_TO_ON_OFF  10
 #define TIME_30_SECOND	30000
-#define TIME_1_MINUTE		60000
+#define TIME_1_MINUTE		60000						
 #define TIME_2_MINUTES	120000
 #define TIME_5_MINUTES  300000
 #define TIME_15_MINUTES 900000
 #define TIME_20_MINUTES 1200000
-#define TIME_25_MINUTES 1500000					   
+#define TIME_25_MINUTES 1500000
 #define TIME_30_MINUTES 1800000
 #define TIME_ADJUST_SPEED_ALARM 5000
 #define TIME_GOTO_SLEEP_MODE 600000
@@ -73,7 +73,6 @@ bool isPressStop = false;
 bool isOn = true;
 bool isSpeedChange = false;
 bool isSleep = false;
-						  
 int nStopPress = 0;
 int nVol = 15;
 GPIO_PinState safeKey = GPIO_PIN_RESET;
@@ -139,8 +138,8 @@ int main(void)
 			SetDefaulData();
 		}
 		lastSafeKeyStatus = safeKey;
+		
 		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
-			
 			currentTick = HAL_GetTick();
 			//==============================================
 			if(isStart && (currentTick - startick < TIME_5_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 0-4m
@@ -224,6 +223,7 @@ int main(void)
 					printf("program timeout\n");
 				}
 
+		
 			if(((HAL_GetTick()- sleepModeTick) >= TIME_GOTO_SLEEP_MODE) && !isStart) // sleep mode check
 			{
 				isSleep = true;
@@ -253,7 +253,7 @@ int main(void)
           HAL_Delay(200);
         }
         /*  Check Key keyPadData from the second pin */
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1)))) // Incline +
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1)))) // Incline +
         {
 					//remindTick = HAL_GetTick();
           key = 0;
@@ -267,9 +267,26 @@ int main(void)
 					}
           HAL_Delay(150);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_2))))//          key = Program
-        {					
+				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_0)))) // Incline + 2
+        {
+					//remindTick = HAL_GetTick();
+          key = 0;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForCline) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust incline it will remind keep safe
+						{
+							MP3_play(24);
+						}
+						tickForCline = HAL_GetTick();
+					}
+          HAL_Delay(150);
+        }
+        
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1))))//          key = Program
+        {
+					
           key = 6;
+//          HAL_Delay(150);
 					if (isStart == false && isSetup == false) 
 						{
 						isMode = true;
@@ -298,16 +315,16 @@ int main(void)
 					}
 					HAL_Delay(200);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1)))) //key Start;
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key Start;
         {
 					startick = tickForCline = tickForPlusMinus = tickForCongratulate = remindTick = HAL_GetTick();
+					
           key = 7;
 //          HAL_Delay(150);
 					if (isStart == false) 
 					{ // start
 						MP3_play(7);
 						isStart = true;
-											 
 						mode = 1 ; // reset mode
 						nSetup = 1; // reset nSetup
 						isSetup = false;
@@ -315,7 +332,7 @@ int main(void)
 					}
 					HAL_Delay(200);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_2)))) //key Stop;
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1)))) //key Stop;
         {
           key = 8;
 					isPressStop = true;
@@ -353,7 +370,7 @@ int main(void)
 					isMode = false;
 					//HAL_Delay(100);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1)))) // Key Mode
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key Mode
         { 
 					key = 9;
 						if (isStart == false && isMode == false) // setup
@@ -382,7 +399,7 @@ int main(void)
           HAL_Delay(200);
         }
         /*  Check Key keyPadData from the third pin */
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1))))// Incline - 
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_2))))// Incline - 
         {
 					//remindTick = HAL_GetTick();
           key = 1;
@@ -395,14 +412,38 @@ int main(void)
 						}
 						tickForCline = HAL_GetTick();
 					}
-        } 
+        }
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_0)))) // Incline - 2
+        {
+					//remindTick = HAL_GetTick();
+          key = 1;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForCline) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust incline it will remind keep safe
+						{
+							MP3_play(25);
+						}
+						tickForCline = HAL_GetTick();
+					}
+          HAL_Delay(150);
+        }
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_2))))
+        {
+          key = 2;
+          HAL_Delay(150);
+        }
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_2))))
+        {
+          key = 3;
+          HAL_Delay(150);
+        }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_2)))) // Key +
         {					
 					//remindTick  = HAL_GetTick();
           key = 4;
-					nVol += 2;
-					if(nVol >= 20)
-						nVol = 20;
+					nVol += 5;
+					if(nVol >= 30)
+						nVol = 30;
 					if(!(isMode||isSetup||isStart))
 					{
 						MP3_setVol(nVol);
@@ -419,12 +460,26 @@ int main(void)
 						tickForPlusMinus = HAL_GetTick();
 					}
           HAL_Delay(50);
-        }				
+        }
+				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_3 |GPIO_PIN_4)))) // Key + 2
+        {					
+					//remindTick  = HAL_GetTick();
+          key = 16;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForPlusMinus) >= TIME_ADJUST_SPEED_ALARM) /// after 30s if user adjust speed it will remind keep safe
+						{
+							MP3_play(21);
+						}
+						tickForPlusMinus = HAL_GetTick();
+					}
+          HAL_Delay(50);
+        }
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_2))) )// key -
         {	
 					//remindTick  = HAL_GetTick();
           key = 5;
-          nVol -= 2;
+          nVol -= 5;
 					if(nVol <= 0)
 						nVol = 0;
 					if(!(isMode||isSetup||isStart))
@@ -443,7 +498,22 @@ int main(void)
 						tickForPlusMinus = HAL_GetTick();
 					}
           HAL_Delay(50);
-        } 
+        }
+				else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_3))) )// key - 2
+        {	
+					//remindTick  = HAL_GetTick();
+          key = 17;
+					if(isStart)
+					{
+						if((HAL_GetTick() - tickForPlusMinus) >= TIME_ADJUST_SPEED_ALARM) // after 30s if user adjust speed it will remind keep safe
+						{
+							MP3_play(22);
+						}
+						tickForPlusMinus = HAL_GetTick();
+					}
+          HAL_Delay(50);
+        }
+        
         /* Check Key keyPadData from the fourt pin */
         else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_3)))) // Key D speed 3
         {
@@ -486,23 +556,23 @@ int main(void)
           HAL_Delay(200);
         }
         /*  Check Key keyPadData from the second pin */
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1)))) 
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1))))
         {
 					key = 0;
           HAL_Delay(150);
         }
         
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_2))))//          key 6 Program
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1))))//          key 6 Program
         {
 					key = 6;
 					HAL_Delay(200);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_1)))) //key 7 Start;
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key 7 Start;
         {
 					key = 7;
 					HAL_Delay(200);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_2)))) //key 8 Stop;
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_7 |GPIO_PIN_1)))) //key 8 Stop;
         {
 					key = 8;
 					isPressStop = true;
@@ -534,13 +604,13 @@ int main(void)
 					isMode = false;
 					//HAL_Delay(100);
         }
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_5 |GPIO_PIN_1)))) // Key 9  Mode
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_8 |GPIO_PIN_1)))) // Key 9  Mode
         { 
 					key = 9;
           HAL_Delay(200);
         }
         /*  Check Key keyPadData from the third pin */
-        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_1)))) //key 1
+        else if(!(keyPadData & ((uint32_t)(GPIO_PIN_4 |GPIO_PIN_2)))) //key 1
         {
 					key = 1;
           HAL_Delay(150);
@@ -718,7 +788,6 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void SetDefaulData(void)
 {
-	printf("Reset data");
 	key = 100; // default
 	mode = 1;
 	nSetup = 1;
@@ -728,6 +797,7 @@ void SetDefaulData(void)
 	isPressStop = false;
 	isOn = true;
 	isSpeedChange = false;
+	//isSleep = false;
 	nStopPress = 0;
 	sleepModeTick = 0;
 	remindTick = 0;
