@@ -74,17 +74,3 @@ Code/KeyPadRead/MDK-ARM/KeyPadRead/stm32f1xx_it.o
 Code/KeyPadRead/MDK-ARM/KeyPadRead/system_stm32f1xx.o
 *.uvoptx
 texttospeech/
-texttospeech/api/QuickStart/obj/Debug/netcoreapp2.1/QuickStart.csproj.CoreCompileInputs.cache
-texttospeech/api/QuickStart/obj/project.assets.json
-texttospeech/api/QuickStart/obj/project.nuget.cache
-texttospeech/api/QuickStart/obj/QuickStart.csproj.nuget.dgspec.json
-texttospeech/api/QuickStart/obj/QuickStart.csproj.nuget.g.props
-texttospeech/api/TextToSpeech/obj/Debug/netcoreapp2.1/TextToSpeech.csprojAssemblyReference.cache
-texttospeech/api/TextToSpeech/obj/project.assets.json
-texttospeech/api/TextToSpeech/obj/project.nuget.cache
-texttospeech/api/TextToSpeech/obj/TextToSpeech.csproj.nuget.dgspec.json
-texttospeech/api/TextToSpeech/obj/TextToSpeech.csproj.nuget.g.props
-texttospeech/api/TextToSpeechTest/obj/project.assets.json
-texttospeech/api/TextToSpeechTest/obj/project.nuget.cache
-texttospeech/api/TextToSpeechTest/obj/TextToSpeechTest.csproj.nuget.dgspec.json
-texttospeech/api/TextToSpeechTest/obj/TextToSpeechTest.csproj.nuget.g.props

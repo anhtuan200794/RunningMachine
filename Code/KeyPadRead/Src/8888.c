@@ -69,6 +69,7 @@ int nSetup = 1;
 bool isStart = false;
 bool isSetup = false;
 bool isMode = false;
+bool isStartWithMode = false;
 bool isPressStop = false;
 bool isOn = true;
 bool isSpeedChange = false;
@@ -141,81 +142,85 @@ int main(void)
 		
 		if(isOn && !isSleep && (safeKey == GPIO_PIN_RESET)){
 			currentTick = HAL_GetTick();
-			//==============================================
-			if(isStart && (currentTick - startick < TIME_5_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 0-4m
-			{
-				remindTick = currentTick;
-				printf("1m remind speed up/down\n");
-				MP3_play(36);
-				HAL_Delay(50);
+			
+			if(!isStartWithMode){ // if start with mode, don't remind.
+				//==============================================
+				if(isStart && (currentTick - startick < TIME_5_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 0-4m
+				{
+					remindTick = currentTick;
+					printf("1m remind speed up/down\n");
+					MP3_play(36);
+					HAL_Delay(50);
+				}
+				else if(isStart && (currentTick - startick > TIME_5_MINUTES + 60000) && (currentTick - startick < TIME_15_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 6-14m
+				{
+					remindTick = currentTick;
+					printf("1m remind speed up/down\n");
+					MP3_play(36);
+					HAL_Delay(50);
+				}
+				else if(isStart && (currentTick - startick > TIME_15_MINUTES + 60000) && (currentTick - startick < TIME_20_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 16-19m
+				{
+					remindTick = currentTick;
+					printf("1m remind speed up/down\n");
+					MP3_play(36);
+					HAL_Delay(50);
+				}
+				//==================================================================== Speed down
+				else if(isStart && (currentTick - startick > TIME_20_MINUTES + 60000) && (currentTick - startick < TIME_25_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) //21-24m
+				{
+					remindTick = currentTick;
+					printf("1m remind speed down\n");
+					MP3_play(19);
+					HAL_Delay(50);
+				}
+				else if(isStart && (currentTick - startick > TIME_25_MINUTES + 60000) && (currentTick - startick < TIME_30_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) //26-29m
+				{
+					remindTick = currentTick;
+					printf("1m remind speed down\n");
+					MP3_play(19);
+					HAL_Delay(50);
+				}
+				else if(isStart && (currentTick - startick > TIME_30_MINUTES + 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) //26-29m
+				{
+					remindTick = currentTick;
+					printf("1m remind speed down\n");
+					MP3_play(19);
+					HAL_Delay(50);
+				}
+				//===============================================
+				else if((currentTick - startick >= TIME_5_MINUTES) && isStart && (currentTick - startick < TIME_5_MINUTES + 100 )) //5 minutes remind adjust speed
+				{
+					printf("Buoc 4\n");
+					MP3_play(32); // Buoc 4 voi khoang 10p tiep theo
+					HAL_Delay(50);
+				}
+				else if((currentTick - startick >= TIME_15_MINUTES) && isStart && (currentTick - startick < TIME_15_MINUTES + 100)) //15 minutes 
+				{
+					printf("Buoc 5\n");
+					MP3_play(33); // buoc 5 voi khoang 5p tiep theo
+					HAL_Delay(50);		   
+				}  
+				else if((currentTick - startick >= TIME_20_MINUTES) && isStart && (currentTick - startick < TIME_20_MINUTES + 100)) // sau 20p
+				{
+					printf("Buoc 6\n");
+					MP3_play(35); // buoc 6 voi khoang 5p den 10p 
+					HAL_Delay(50);
+				}  
+				else if((currentTick - startick >= TIME_25_MINUTES) && isStart && (currentTick - startick < TIME_25_MINUTES + 150)) // sau 25p
+				{
+					printf("Buoc 7\n");
+					MP3_play(34); // buoc 7
+					HAL_Delay(50);
+				}
+				else if((currentTick - startick >= TIME_30_MINUTES) && isStart && (currentTick - startick < TIME_30_MINUTES + 150)) // sau 30p
+				{	  
+					printf("Buoc 7\n");
+					MP3_play(34); // buoc 7
+					HAL_Delay(50);
+				}
 			}
-			else if(isStart && (currentTick - startick > TIME_5_MINUTES + 60000) && (currentTick - startick < TIME_15_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 6-14m
-			{
-				remindTick = currentTick;
-				printf("1m remind speed up/down\n");
-				MP3_play(36);
-				HAL_Delay(50);
-			}
-			else if(isStart && (currentTick - startick > TIME_15_MINUTES + 60000) && (currentTick - startick < TIME_20_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) // 16-19m
-			{
-				remindTick = currentTick;
-				printf("1m remind speed up/down\n");
-				MP3_play(36);
-				HAL_Delay(50);
-			}
-			//==================================================================== Speed down
-			else if(isStart && (currentTick - startick > TIME_20_MINUTES + 60000) && (currentTick - startick < TIME_25_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) //21-24m
-			{
-				remindTick = currentTick;
-				printf("1m remind speed down\n");
-				MP3_play(19);
-				HAL_Delay(50);
-			}
-			else if(isStart && (currentTick - startick > TIME_25_MINUTES + 60000) && (currentTick - startick < TIME_30_MINUTES - 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) //26-29m
-			{
-				remindTick = currentTick;
-				printf("1m remind speed down\n");
-				MP3_play(19);
-				HAL_Delay(50);
-			}
-			else if(isStart && (currentTick - startick > TIME_30_MINUTES + 60000) && (currentTick - remindTick >= TIME_1_MINUTE)) //26-29m
-			{
-				remindTick = currentTick;
-				printf("1m remind speed down\n");
-				MP3_play(19);
-				HAL_Delay(50);
-			}
-//===============================================
-			else if((currentTick - startick >= TIME_5_MINUTES) && isStart && (currentTick - startick < TIME_5_MINUTES + 100 )) //5 minutes remind adjust speed
-			{
-				printf("Buoc 4\n");
-				MP3_play(32); // Buoc 4 voi khoang 10p tiep theo
-				HAL_Delay(50);
-			}
-			else if((currentTick - startick >= TIME_15_MINUTES) && isStart && (currentTick - startick < TIME_15_MINUTES + 100)) //15 minutes 
-			{
-				printf("Buoc 5\n");
-				MP3_play(33); // buoc 5 voi khoang 5p tiep theo
-				HAL_Delay(50);		   
-			}  
-			else if((currentTick - startick >= TIME_20_MINUTES) && isStart && (currentTick - startick < TIME_20_MINUTES + 100)) // sau 20p
-			{
-				printf("Buoc 6\n");
-				MP3_play(35); // buoc 6 voi khoang 5p den 10p 
-				HAL_Delay(50);
-			}  
-			else if((currentTick - startick >= TIME_25_MINUTES) && isStart && (currentTick - startick < TIME_25_MINUTES + 150)) // sau 25p
-			{
-				printf("Buoc 7\n");
-				MP3_play(34); // buoc 7
-				HAL_Delay(50);
-			}
-			else if((currentTick - startick >= TIME_30_MINUTES) && isStart && (currentTick - startick < TIME_30_MINUTES + 150)) // sau 30p
-			{	  
-				printf("Buoc 7\n");
-				MP3_play(34); // buoc 7
-				HAL_Delay(50);
-			}
+			//----------------------------------------------------
 
 			if(currentTick - tickForProgramTimeout >= PROGRAM_TIMEOUT && isMode)
 				{
@@ -323,7 +328,13 @@ int main(void)
 //          HAL_Delay(150);
 					if (isStart == false) 
 					{ // start
-						MP3_play(7);
+						if(mode >1){
+							isStartWithMode = true;
+							printf("Start with mode, don't remind\n");
+							MP3_play(37);
+						} else {
+							MP3_play(7);
+						}
 						isStart = true;
 						mode = 1 ; // reset mode
 						nSetup = 1; // reset nSetup
@@ -363,6 +374,7 @@ int main(void)
 						}
 						nStopPress = 0;
 					}
+					SetDefaulData();
 					isStart = false;
 					mode = 1 ; // reset mode
 					nSetup = 1; // reset nSetup
@@ -536,7 +548,8 @@ int main(void)
 						MP3_play(14);
           HAL_Delay(200);
         }
-//-----------------------------------------------------------------------------------------------------				
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//===================================================================================================================================================				
 		} else 
 		{ /// turn off audio manual
 			if(!(keyPadData & ((uint32_t)(GPIO_PIN_6 |GPIO_PIN_0)))) // Key 10 incl :4
@@ -788,6 +801,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void SetDefaulData(void)
 {
+	printf("Set Defaul Data\n");
 	key = 100; // default
 	mode = 1;
 	nSetup = 1;
@@ -795,14 +809,15 @@ void SetDefaulData(void)
 	isSetup = false;
 	isMode = false;
 	isPressStop = false;
-	isOn = true;
+	//isOn = true;
 	isSpeedChange = false;
 	//isSleep = false;
 	nStopPress = 0;
-	sleepModeTick = 0;
+	//sleepModeTick = 0;
 	remindTick = 0;
 	currentTick = 0;
 	tickForPlusMinus = 0;
+	isStartWithMode = false;
 }
 /* Calculate checksum
  */
