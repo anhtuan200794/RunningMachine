@@ -609,6 +609,7 @@ int main(void)
             MP3_play(17);
           }
           nStopPress = 0;
+					isPressStop = false;
         }
         isStart = false;
         mode = 1 ; // reset mode
@@ -808,11 +809,11 @@ void SetDefaulData(void)
   isStart = false;
   isSetup = false;
   isMode = false;
-  isPressStop = false;
+  //isPressStop = false;
   //isOn = true;
   isSpeedChange = false;
   //isSleep = false;
-  nStopPress = 0;
+  //nStopPress = 0;
   //sleepModeTick = 0;
   remindTick = 0;
   currentTick = 0;
